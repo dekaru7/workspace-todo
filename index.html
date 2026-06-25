@@ -4,49 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workspace - Premium Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="top-bar">
+<div id="login-page" class="login-container">
+    <div class="login-card panel-card">
+        <svg class="login-logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="512" height="512" rx="140" class="logo-bg"/>
+            <path d="M120 140 L190 380 L256 260 L322 380 L392 140" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" fill="none" class="logo-path"/>
+            <circle cx="256" cy="370" r="24" class="logo-circle"/>
+        </svg>
+        
+        <h1 class="login-greeting">Selamat Datang di Workspace Anda</h1>
+        <p class="login-subtitle">Fokus, Terorganisir, dan Produktif.</p>
+        
+        <button id="login-btn" class="btn-submit btn-login">Masuk ke Dashboard</button>
+    </div>
+</div>
+
+<div id="main-dashboard" class="wrapper" style="display: none;">
+    <header class="top-bar">
         <div class="top-bar-left">
-            <svg class="app-logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <svg class="app-logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="512" height="512" rx="140" class="logo-bg"/>
                 <path d="M120 140 L190 380 L256 260 L322 380 L392 140" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" fill="none" class="logo-path"/>
                 <circle cx="256" cy="370" r="24" class="logo-circle"/>
             </svg>
             <span class="brand-text">Workspace Dashboard</span>
         </div>
-        <button class="theme-toggle" id="theme-btn">Gelap</button>
-    </div>
+        <button class="theme-toggle" id="theme-btn" aria-label="Ubah Tema Tampilan">Gelap</button>
+    </header>
 
-    <div class="dashboard-grid">
-        
+    <main class="dashboard-grid">
         <div class="sticky-panel">
             <div class="panel-card calendar-nav-panel">
                 <div class="date-picker-wrapper">
-                    <input type="date" id="calendar-date-input">
+                    <input type="date" id="calendar-date-input" aria-label="Pilih Tanggal">
                 </div>
                 <div class="nav-arrows">
-                    <button class="btn-arrow" id="prev-day-btn">←</button>
+                    <button class="btn-arrow" id="prev-day-btn" aria-label="Hari Sebelumnya">←</button>
                     <button class="btn-today" id="today-btn">Hari Ini</button>
-                    <button class="btn-arrow" id="next-day-btn">→</button>
+                    <button class="btn-arrow" id="next-day-btn" aria-label="Hari Berikutnya">→</button>
                 </div>
             </div>
 
             <div class="panel-card">
                 <div class="input-form">
-                    <input type="text" id="task-title" placeholder="Tulis rencana kegiatan baru..." autocomplete="off">
+                    <input type="text" id="task-title" placeholder="Tulis rencana kegiatan baru..." autocomplete="off" aria-label="Isi kegiatan baru">
                     <div class="form-controls">
-                        <select id="task-tag">
+                        <select id="task-tag" aria-label="Pilih Kategori">
                             <option value="Umum">Umum</option>
                             <option value="Kerja">Kerja</option>
                             <option value="Pribadi">Pribadi</option>
                             <option value="Lainnya">Lainnya</option>
                         </select>
-                        <select id="task-time">
+                        <select id="task-time" aria-label="Pilih Waktu Pelaksanaan">
                             <option value="pagi">Pagi</option>
                             <option value="siang">Siang</option>
                             <option value="sore">Sore</option>
@@ -69,7 +85,7 @@
                 </div>
 
                 <div class="search-box">
-                    <input type="text" id="search-input" placeholder="Ketik kata kunci untuk memfilter cepat..." autocomplete="off">
+                    <input type="text" id="search-input" placeholder="Ketik kata kunci untuk memfilter cepat..." autocomplete="off" aria-label="Cari agenda">
                 </div>
 
                 <div class="sub-bar">
@@ -85,8 +101,7 @@
                 <div class="empty-view" id="empty-view" style="display: none;">Tidak ada rencana kegiatan pada tanggal ini.</div>
             </div>
         </div>
-
-    </div>
+    </main>
 </div>
 
 <script src="js/script.js"></script>
