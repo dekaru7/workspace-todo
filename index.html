@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace - Premium Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="fluid-bg" aria-hidden="true">
+    <span class="blob blob-pagi"></span>
+    <span class="blob blob-siang"></span>
+    <span class="blob blob-sore"></span>
+    <span class="blob blob-malam"></span>
+</div>
+
+<div id="login-page" class="login-container">
+    <div class="login-card">
+        <svg class="login-logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="512" height="512" rx="140" fill="var(--accent)"/>
+            <path d="M120 140 L190 380 L256 260 L322 380 L392 140" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#ffffff"/>
+            <circle cx="256" cy="370" r="24" fill="#ffffff"/>
+        </svg>
+        <h1 class="login-greeting">Selamat Datang di Workspace Anda</h1>
+        <p class="login-subtitle">Fokus, Terorganisir, dan Produktif.</p>
+        <button id="login-btn" class="btn-submit btn-login">Masuk ke Dashboard</button>
+    </div>
+</div>
+
+<div id="main-dashboard" class="wrapper" style="display: none;">
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <svg class="app-logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="512" height="512" rx="140" fill="var(--accent)"/>
+                <path d="M120 140 L190 380 L256 260 L322 380 L392 140" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#ffffff"/>
+                <circle cx="256" cy="370" r="24" fill="#ffffff"/>
+            </svg>
+            <span class="brand-text">Workspace Dashboard</span>
+        </div>
+        <div class="top-bar-actions">
+            <button class="icon-btn" id="export-btn" title="Ekspor agenda (.json)" aria-label="Ekspor agenda">⭳</button>
+            <label class="icon-btn" title="Impor agenda (.json)" aria-label="Impor agenda">
+                ⭱
+                <input type="file" id="import-input" accept="application/json" hidden>
+            </label>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+        <div class="sticky-panel">
+            <div class="panel-card calendar-nav-panel">
+                <div class="date-picker-wrapper">
+                    <input type="date" id="calendar-date-input" aria-label="Pilih Tanggal">
+                </div>
+                <div class="nav-arrows">
+                    <button class="btn-arrow" id="prev-day-btn" aria-label="Hari Sebelumnya">←</button>
+                    <button class="btn-today" id="today-btn">Hari Ini</button>
+                    <button class="btn-arrow" id="next-day-btn" aria-label="Hari Berikutnya">→</button>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <div class="input-form" id="input-form">
+                    <input type="text" id="task-title" placeholder="Tulis rencana kegiatan baru..." autocomplete="off" aria-label="Isi kegiatan baru">
+                    <div class="form-controls">
+                        <select id="task-tag" aria-label="Pilih Kategori">
+                            <option value="Umum">Umum</option>
+                            <option value="Kerja">Kerja</option>
+                            <option value="Pribadi">Pribadi</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                        <select id="task-time" aria-label="Pilih Waktu Pelaksanaan">
+                            <option value="pagi">Pagi</option>
+                            <option value="siang">Siang</option>
+                            <option value="sore">Sore</option>
+                            <option value="malam">Malam</option>
+                        </select>
+                        <button class="btn-submit" id="add-task-btn">Tambah Agenda</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content-panel">
+            <div class="panel-card list-panel">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span id="progress-date-label">Agenda Kerja</span>
+                        <span id="progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Ketik kata kunci untuk memfilter cepat..." autocomplete="off" aria-label="Cari agenda">
+                </div>
+
+                <div class="sub-bar">
+                    <div class="filter-nav" id="filter-nav">
+                        <button class="filter-tab active" data-filter="all">Semua<span class="count" id="count-all">0</span></button>
+                        <button class="filter-tab" data-filter="active">Aktif<span class="count" id="count-active">0</span></button>
+                        <button class="filter-tab" data-filter="completed">Selesai<span class="count" id="count-completed">0</span></button>
+                    </div>
+                    <button class="btn-clear-all" id="clear-completed-btn">Bersihkan Selesai</button>
+                </div>
+
+                <ul class="todo-list" id="todo-list"></ul>
+                <div class="empty-view" id="empty-view" style="display: none;">
+                    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="36" cy="36" r="34" stroke="currentColor" stroke-opacity="0.15" stroke-width="2"/>
+                        <path d="M24 37.5L32 45.5L49 27" stroke="currentColor" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="empty-view-text">Tidak ada rencana kegiatan pada tanggal ini.</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
