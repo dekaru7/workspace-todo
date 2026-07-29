@@ -47,7 +47,7 @@ body {
     position: relative;
 }
 
-/* ---------- Fluid Background ---------- */
+/* ---------- Fluid background ---------- */
 .fluid-bg {
     position: fixed;
     inset: 0;
@@ -204,7 +204,7 @@ body {
 }
 
 .top-bar-left { display: flex; align-items: center; gap: 12px; }
-.top-bar-actions { display: flex; align-items: center; gap: 8px; }
+.top-bar-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
 .app-logo { width: 32px; height: 32px; display: block; filter: drop-shadow(0 6px 14px rgba(124, 140, 245, 0.18)); }
 
@@ -222,6 +222,9 @@ body {
     border: 1px solid var(--card-border);
     width: 36px;
     height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    flex-shrink: 0;
     border-radius: 12px;
     display: inline-flex;
     align-items: center;
@@ -230,9 +233,27 @@ body {
     color: var(--text-main);
     font-size: 15px;
     line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
     transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
+.icon-btn svg { display: block; flex-shrink: 0; }
 .icon-btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+
+.live-clock {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    padding: 8px 16px;
+    border-radius: 99px;
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-variant-numeric: tabular-nums;
+    user-select: none;
+}
 
 .dashboard-grid {
     display: grid;
@@ -443,7 +464,7 @@ body {
 }
 .btn-clear-all:hover { color: var(--danger); }
 
-/* ---------- Todo List ---------- */
+/* ---------- Todo list ---------- */
 .todo-list { list-style: none; }
 .todo-item {
     display: flex;

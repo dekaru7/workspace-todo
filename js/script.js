@@ -4,7 +4,7 @@ try {
 } catch (e) {
     tasks = [];
 }
-
+// migrate: ensure every task has an "order" value for manual drag sorting
 let orderSeed = Date.now();
 tasks.forEach(t => { if (typeof t.order !== 'number') t.order = orderSeed++; });
 
@@ -31,8 +31,6 @@ const DOM = {
     mainDashboard: document.getElementById('main-dashboard'),
     loginBtn: document.getElementById('login-btn'),
     toastContainer: document.getElementById('toast-container'),
-    exportBtn: document.getElementById('export-btn'),
-    importInput: document.getElementById('import-input'),
     countAll: document.getElementById('count-all'),
     countActive: document.getElementById('count-active'),
     countCompleted: document.getElementById('count-completed')
@@ -234,7 +232,7 @@ function escapeHTML(str) {
 }
 function escapeAttr(str) { return escapeHTML(str); }
 
-/* ---------------- Add Task ---------------- */
+/* ---------------- Add task ---------------- */
 function addTask() {
     const title = DOM.taskInput.value.trim();
     if (!title) return;
@@ -259,7 +257,7 @@ DOM.taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTask();
 });
 
-/* ---------------- Edit Task ---------------- */
+/* ---------------- Edit task ---------------- */
 function startEdit(id) {
     editingId = id;
     renderTasks();
@@ -279,7 +277,7 @@ function commitEdit(id, input) {
     saveAndRender();
 }
 
-/* ---------------- List Interactions ---------------- */
+/* ---------------- List interactions ---------------- */
 DOM.taskList.addEventListener('click', (e) => {
     const item = e.target.closest('.todo-item');
     if (!item) return;
@@ -330,7 +328,7 @@ function deleteTask(id) {
     }, 5000);
 }
 
-/* ---------------- Drag & Drop Reorder ---------------- */
+/* ---------------- Drag & drop reorder ---------------- */
 let dragSourceId = null;
 
 function attachDragHandlers() {
@@ -383,7 +381,7 @@ function reorderTasks(sourceId, targetId) {
     saveAndRender();
 }
 
-/* ---------------- Filters / Search / Clear ---------------- */
+/* ---------------- Filters / search / clear ---------------- */
 document.getElementById('filter-nav').addEventListener('click', (e) => {
     const tab = e.target.closest('.filter-tab');
     if (!tab) return;
@@ -416,49 +414,15 @@ DOM.searchInput.addEventListener('input', (e) => {
     renderTasks();
 });
 
-/* ---------------- Export / Import ---------------- */
-DOM.exportBtn.addEventListener('click', () => {
-    const blob = new Blob([JSON.stringify(tasks, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `workspace-agenda-${selectedDate}.json`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-    showToast('Data agenda diekspor');
-});
-
-DOM.importInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-        try {
-            const imported = JSON.parse(reader.result);
-            if (!Array.isArray(imported)) throw new Error('format tidak valid');
-            let seed = Date.now();
-            const cleaned = imported
-                .filter(t => t && typeof t.title === 'string' && typeof t.date === 'string')
-                .map(t => ({
-                    id: seed++,
-                    title: t.title,
-                    tag: t.tag || 'Umum',
-                    timeExecution: t.timeExecution || 'pagi',
-                    date: t.date,
-                    completed: !!t.completed,
-                    order: typeof t.order === 'number' ? t.order : seed
-                }));
-            tasks = tasks.concat(cleaned);
-            saveAndRender();
-            showToast(`${cleaned.length} agenda berhasil diimpor`);
-        } catch (err) {
-            showToast('Gagal mengimpor: format file tidak valid');
-        }
-        DOM.importInput.value = '';
-    };
-    reader.readAsText(file);
-});
+/* ---------------- Live clock ---------------- */
+const liveClockEl = document.getElementById('live-clock');
+function updateLiveClock() {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    liveClockEl.textContent = `${hh}:${mm}`;
+}
+updateLiveClock();
+setInterval(updateLiveClock, 1000);
 
 renderTasks();
