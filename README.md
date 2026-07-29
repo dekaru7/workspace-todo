@@ -1,32 +1,52 @@
-# 🚀 Workspace Dashboard
+# 🗂️ Workspace Dashboard
 
-Workspace Dashboard adalah aplikasi **To-Do List & Daily Planner** berbasis **HTML, CSS, dan JavaScript** yang dirancang untuk membantu pengguna mengelola aktivitas harian dengan mudah. Aplikasi ini memiliki tampilan modern, responsif, serta menggunakan **Local Storage** sehingga data tetap tersimpan tanpa memerlukan database atau backend.
-
----
+Workspace Dashboard adalah aplikasi **To-Do List** berbasis web dengan tampilan modern dan interaktif untuk membantu mengelola aktivitas harian. Aplikasi ini dibuat menggunakan **HTML, CSS, dan JavaScript murni (Vanilla JS)** tanpa framework sehingga ringan dan mudah dijalankan.
 
 ## ✨ Fitur
 
-- 📝 Menambahkan tugas baru
+- 🔐 Halaman login sederhana
+- 📝 Menambah tugas baru
 - ✏️ Mengedit tugas
 - 🗑️ Menghapus tugas
 - ↩️ Undo setelah menghapus tugas
 - ✅ Menandai tugas selesai
-- 📅 Mengelola tugas berdasarkan tanggal
+- 📅 Memilih tanggal untuk setiap daftar tugas
+- ⏮️ Navigasi hari sebelumnya, hari ini, dan hari berikutnya
 - 🏷️ Kategori tugas
+  - Umum
+  - Kerja
+  - Pribadi
+  - Lainnya
+- 🌅 Pembagian waktu aktivitas
+  - Pagi
+  - Siang
+  - Sore
+  - Malam
 - 🔍 Pencarian tugas
-- ⏰ Menentukan waktu kegiatan
 - 📊 Progress penyelesaian tugas
 - 📈 Statistik jumlah tugas
-- 💾 Penyimpanan otomatis menggunakan Local Storage
-- 📤 Export data ke format JSON
-- 📥 Import data dari file JSON
-- 📱 Tampilan responsif untuk desktop maupun perangkat mobile
+  - Semua
+  - Aktif
+  - Selesai
+- 💾 Penyimpanan data menggunakan Local Storage
+- 🎨 Tampilan modern dengan animasi
+
+---
+
+## 🛠️ Teknologi
+
+Project ini dibangun menggunakan:
+
+- HTML5
+- CSS3
+- JavaScript (Vanilla JS)
+- Local Storage API
 
 ---
 
 ## 📂 Struktur Project
 
-```text
+```
 workspace-dashboard/
 │
 ├── index.html
@@ -34,95 +54,84 @@ workspace-dashboard/
 │   └── style.css
 ├── js/
 │   └── script.js
-├── assets/
-│   └── screenshot.png
 └── README.md
 ```
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
-
-- HTML5
-- CSS3
-- JavaScript (ES6)
-- Local Storage API
-
-Tanpa menggunakan framework maupun library tambahan.
-
----
-
 ## 🚀 Cara Menjalankan
 
-### 1. Clone repository
+1. Clone repository
 
 ```bash
 git clone https://github.com/username/workspace-dashboard.git
 ```
 
-### 2. Masuk ke folder project
+2. Masuk ke folder project
 
 ```bash
 cd workspace-dashboard
 ```
 
-### 3. Jalankan aplikasi
+3. Buka file
 
-Buka file **index.html** menggunakan browser, atau gunakan **Live Server** pada Visual Studio Code.
+```
+index.html
+```
+
+menggunakan browser favorit Anda.
+
+Tidak memerlukan instalasi ataupun server tambahan.
 
 ---
 
 ## 💾 Penyimpanan Data
 
-Seluruh data tugas disimpan secara otomatis menggunakan **Local Storage** pada browser.
+Semua data tugas disimpan menggunakan **Local Storage** pada browser.
 
-Data akan tetap tersedia selama cache atau data browser tidak dihapus.
+Artinya:
 
----
-
-## 📤 Export & Import
-
-Aplikasi mendukung fitur:
-
-- Export seluruh data tugas ke file **JSON**
-- Import kembali data dari file **JSON**
-
-Fitur ini memudahkan pengguna melakukan backup maupun memindahkan data ke perangkat lain.
+- Data tetap tersimpan meskipun browser ditutup.
+- Data hanya tersedia pada browser dan perangkat yang sama.
+- Jika cache atau Local Storage dihapus, seluruh data akan ikut terhapus.
 
 ---
 
-## 📱 Responsive Design
+## 📸 Tampilan
 
-Workspace Dashboard dapat digunakan dengan nyaman pada berbagai ukuran layar, seperti:
+Fitur utama yang tersedia pada aplikasi:
 
-- 💻 Desktop
-- 🖥️ Laptop
-- 📱 Smartphone
-- 📲 Tablet
+- Dashboard modern
+- Login screen
+- Kalender harian
+- Daftar aktivitas
+- Progress penyelesaian
+- Statistik tugas
+- Live Clock
+- Pencarian tugas
 
 ---
 
 ## 🎯 Tujuan Project
 
-Project ini dibuat sebagai media pembelajaran sekaligus aplikasi sederhana untuk membantu pengguna:
+Project ini dibuat sebagai latihan pengembangan aplikasi web sederhana menggunakan JavaScript murni dengan fokus pada:
 
-- Mengatur jadwal harian
-- Mencatat pekerjaan
-- Mengelola target harian
-- Meningkatkan produktivitas
+- Manipulasi DOM
+- Event Handling
+- Local Storage
+- Responsive UI
+- Manajemen data sederhana
 
 ---
 
 ## 📄 Lisensi
 
-Project ini menggunakan lisensi **MIT License**.
-
-Silakan digunakan, dimodifikasi, dan dikembangkan sesuai kebutuhan.
+Project ini dibuat untuk keperluan pembelajaran dan bebas digunakan serta dikembangkan.
 
 ---
 
 ## 👨‍💻 Developer
 
-**Devzii**
+Dibuat oleh **Devzii**.
 
-Apabila project ini bermanfaat, jangan lupa berikan ⭐ pada repository GitHub sebagai bentuk dukungan.
+Jika project ini bermanfaat, jangan lupa berikan ⭐ pada repository GitHub.
