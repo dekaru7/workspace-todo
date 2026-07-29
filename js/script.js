@@ -4,7 +4,7 @@ try {
 } catch (e) {
     tasks = [];
 }
-// migrate: ensure every task has an "order" value for manual drag sorting
+
 let orderSeed = Date.now();
 tasks.forEach(t => { if (typeof t.order !== 'number') t.order = orderSeed++; });
 
@@ -78,7 +78,6 @@ function saveAndRender(opts) {
     renderTasks(opts);
 }
 
-/* ---------------- Toasts ---------------- */
 function showToast(message, actionLabel, actionCallback, duration) {
     const toast = document.createElement('div');
     toast.className = 'toast';
@@ -109,7 +108,6 @@ function dismissToast(toast) {
     setTimeout(() => toast.remove(), 250);
 }
 
-/* ---------------- Confetti ---------------- */
 function celebrate() {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const colors = ['var(--time-pagi)', 'var(--time-siang)', 'var(--time-sore)', 'var(--time-malam)'];
@@ -125,7 +123,6 @@ function celebrate() {
     }
 }
 
-/* ---------------- Rendering ---------------- */
 let wasComplete = {};
 
 function renderTasks(opts) {
@@ -232,7 +229,6 @@ function escapeHTML(str) {
 }
 function escapeAttr(str) { return escapeHTML(str); }
 
-/* ---------------- Add task ---------------- */
 function addTask() {
     const title = DOM.taskInput.value.trim();
     if (!title) return;
@@ -257,7 +253,6 @@ DOM.taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTask();
 });
 
-/* ---------------- Edit task ---------------- */
 function startEdit(id) {
     editingId = id;
     renderTasks();
@@ -277,7 +272,6 @@ function commitEdit(id, input) {
     saveAndRender();
 }
 
-/* ---------------- List interactions ---------------- */
 DOM.taskList.addEventListener('click', (e) => {
     const item = e.target.closest('.todo-item');
     if (!item) return;
@@ -328,7 +322,6 @@ function deleteTask(id) {
     }, 5000);
 }
 
-/* ---------------- Drag & drop reorder ---------------- */
 let dragSourceId = null;
 
 function attachDragHandlers() {
@@ -381,7 +374,6 @@ function reorderTasks(sourceId, targetId) {
     saveAndRender();
 }
 
-/* ---------------- Filters / search / clear ---------------- */
 document.getElementById('filter-nav').addEventListener('click', (e) => {
     const tab = e.target.closest('.filter-tab');
     if (!tab) return;
@@ -414,7 +406,6 @@ DOM.searchInput.addEventListener('input', (e) => {
     renderTasks();
 });
 
-/* ---------------- Live clock ---------------- */
 const liveClockEl = document.getElementById('live-clock');
 function updateLiveClock() {
     const now = new Date();
