@@ -79,10 +79,6 @@ cd workspace-dashboard
 index.html
 ```
 
-menggunakan browser favorit Anda.
-
-Tidak memerlukan instalasi ataupun server tambahan.
-
 ---
 
 ## 💾 Penyimpanan Data
